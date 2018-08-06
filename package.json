@@ -1,0 +1,23 @@
+{
+  "name": "orbisbot",
+  "version": "1.0.0",
+  "description": "A discord bot.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Subbzie/Orbis.git"
+  },
+  "author": "Jack",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Subbzie/Orbis/issues"
+  },
+  "homepage": "https://github.com/Subbzie/Orbis#readme",
+  "dependencies": {
+    "discord.js": "^11.3.0",
+    "kitsu.js": "^2.0.0"
+  }
+}
