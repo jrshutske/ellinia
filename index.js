@@ -1,7 +1,7 @@
     const botConfig = require('./config.json');
     const Discord = require("discord.js");
 
-    //turn on bot and log confirmation
+    //turn on bot and log confirmations
     var bot = new Discord.Client();
     bot.on("ready", function()
     {
