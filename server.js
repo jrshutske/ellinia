@@ -8,8 +8,18 @@ const opus = require('node-opus');
 let queue = {};
 
 const commands = {
-	'avatar': (msg) => {
+
+	'username': (msg) => {
+		let user = msg.content.split(' ')[1];
+		msg.channel.send(user);
+	},
+	'avatarurl': (msg) => {
+		let user = msg.content.split(' ')[1];
 		msg.reply(msg.author.avatarURL);
+	},
+	'snow': (msg) => {
+		let user = msg.content.split(' ')[1];
+		msg.reply(msg.author.id);
 	},
 	'play': (msg) => {
 		if (queue[msg.guild.id] === undefined) return msg.channel.send(`Add some songs to the queue first with ${tokens.prefix}add`);
