@@ -39,4 +39,4 @@ client.on('message', msg => {
 		commands.connect['connectdb'](msg)
 	}
 });
-client.login(tokens.d_token);
+client.login(process.env.SECRET_TOKEN);
