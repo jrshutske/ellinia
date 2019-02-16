@@ -35,5 +35,8 @@ client.on('message', msg => {
 		description: "Hello!"
 		}});
 	}
+	if (COMMAND === 'connect') {
+		commands.connect['connectdb'](msg)
+	}
 });
 client.login(tokens.d_token);

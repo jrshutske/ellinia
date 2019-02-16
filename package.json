@@ -17,9 +17,11 @@
   },
   "homepage": "https://github.com/Subbzie/Orbis#readme",
   "dependencies": {
-    "discord.js": "^11.3.0",
+    "bufferutil": "^4.0.1",
+    "discord.js": "^11.4.2",
     "kitsu.js": "^2.0.0",
-    "node-opus": "^0.3.0",
+    "node-opus": "^0.3.1",
+    "pg": "^7.8.0",
     "ytdl-core": "^0.24.0"
   }
 }
