@@ -1,4 +1,4 @@
-# OrbisBot
+# ellinia bot
 Discord music bot.
 # Requirements:
 - Install Node.JS
@@ -8,7 +8,6 @@ Discord music bot.
 - Create a config.json file and replace ```ENTER TOKEN HERE``` with the secret token given to you: https://discordapp.com/developers/applications/
 ```json
 {
-  "d_token": "ENTER TOKEN HERE",
   "prefix": "/",
   "adminID": "YOUR ADMIN ID"
 }
