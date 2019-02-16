@@ -1,7 +1,7 @@
 const { Client } = require('discord.js');
 const client = new Client();
-const tokens = require('./config.json');
 const commands = require('./commands.js')
+const config = require('./config.js')
 
 client.on('ready', () => {
 	console.log('ready!');
@@ -39,4 +39,4 @@ client.on('message', msg => {
 		commands.connect['connectdb'](msg)
 	}
 });
-client.login(tokens.d_token);
+client.login(config.s3.d_token);
