@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/Subbzie/Orbis#readme",
   "dependencies": {
+    "aws-sdk": "^2.404.0",
     "bufferutil": "^4.0.1",
     "discord.js": "^11.4.2",
     "kitsu.js": "^2.0.0",

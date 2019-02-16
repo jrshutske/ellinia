@@ -1,0 +1,6 @@
+{
+  "d_token": process.env.SECRET_TOKEN,
+  "prefix": "/",
+  "adminID": "206308444662267905",
+  "db_password": "jackspass"
+}

@@ -1,15 +1,15 @@
 const { Client } = require('discord.js');
 const client = new Client();
+const tokens = require('./config.json');
 const commands = require('./commands.js')
-const config = require('./config.js')
 
 client.on('ready', () => {
 	console.log('ready!');
 });
 
 client.on('message', msg => {
-	if (!msg.content.startsWith(config.s3.prefix) || msg.author.bot) return;
-	const ARGS = msg.content.slice(config.s3.prefix.length).trim().split(/ +/g);
+	if (!msg.content.startsWith(tokens.prefix) || msg.author.bot) return;
+	const ARGS = msg.content.slice(tokens.prefix.length).trim().split(/ +/g);
 	const COMMAND = ARGS[0]
 	const ACTION = ARGS[1]
 	const ARG = ARGS[2]
@@ -39,4 +39,4 @@ client.on('message', msg => {
 		commands.connect['connectdb'](msg)
 	}
 });
-client.login(config.s3.d_token);
+client.login(tokens.d_token);
