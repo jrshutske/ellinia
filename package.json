@@ -1,21 +1,22 @@
 {
-  "name": "orbisbot",
+  "name": "ellinia",
   "version": "1.0.0",
   "description": "A discord bot.",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "heroku-postbuild": "npm start",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Subbzie/Orbis.git"
+    "url": "git+https://github.com/jrshutske/ellinia"
   },
   "author": "Jack",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/Subbzie/Orbis/issues"
+    "url": "https://github.com/jrshutske/ellinia/issues"
   },
-  "homepage": "https://github.com/Subbzie/Orbis#readme",
+  "homepage": "https://github.com/jrshutske/ellinia#readme",
   "dependencies": {
     "aws-sdk": "^2.404.0",
     "bufferutil": "^4.0.1",
