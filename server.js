@@ -1,7 +1,10 @@
-const { Client, RichEmbed } = require('discord.js');
-const client = new Client();
-const tokens = require('./config.json');
+const { Client, RichEmbed } = require('discord.js')
+const client = new Client()
+const tokens = require('./config.json')
 const commands = require('./commands.js')
+const apiKey = require('./utilities/apiKey')
+let blizzardApiKey = apiKey.getKey()
+
 
 client.on('ready', () => {
 	console.log('ready!');
@@ -43,17 +46,10 @@ client.on('message', msg => {
     msg.channel.send(text);
 	}
   if(COMMAND === "test") {
-    const embed = new RichEmbed()
-      .setTitle("Hi I'm ellinia!")
-      .setColor(0x00AE88)
-      .setDescription("Welcome to " + msg.guild.name +
-                      "! We hope you enjoy your time here. Please remember to be respectful and follow the rules.")
-      .setImage("https://i.ytimg.com/vi/XYtHWyrVm30/maxresdefault.jpg")
-      .setThumbnail(msg.guild.iconURL)
-      .setTimestamp()
-      .setURL("https://discord.gg/KTgGUeV")
-      .setFooter("All boys leave home someday. It says so on TV.")
-      msg.channel.send({embed});
+    const oauth = new OAuth2Application()
+msg.channel.send(oauth.redirectURIs)
+
+
 	}
 	if (COMMAND === 'hi') {
 		msg.channel.send({embed: {
@@ -66,4 +62,4 @@ client.on('message', msg => {
 	}
 });
 // client.login(process.env.SECRET_TOKEN);
-client.login('NTQ2MTE4NzQwOTMzMzQ1Mjgw.D0k1pQ.90YCmfI8OopqB6u6Ln8bs9brF3c');
+client.login(process.env.SECRET_TOKEN);
