@@ -1,7 +1,7 @@
-const play = (msgContent) => {
+const main = (msgContent) => {
   let msg = msgContent.msg;
-  let bet = msg.content.split(' ')[1];
-  var fruits = [":tangerine:",":grapes:",":cherries:",":seven:"];
+  let bet = msgContent.ARGS[1]
+  var fruits = [":tangerine:",":grapes:",":cherries:",":seven:",":banana:"];
   var spunFruits = [];
   var randomItem;
   var slotString = "**[:slot_machine: l SLOTS ]\n-----------------\n**";
@@ -51,4 +51,4 @@ const play = (msgContent) => {
 
   msg.channel.send(slotString + "\n\nYou used " + bet + " credit(s) and " + slotsResult);
 }
-module.exports.play = play
+module.exports.main = main

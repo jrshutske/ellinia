@@ -2,9 +2,6 @@ const { Client, RichEmbed } = require('discord.js')
 const client = new Client();
 const tokens = require('./config.json')
 const commands = require('./commands.js')
-const apiKey = require('./utilities/apikey.js')
-const testjs = require('./test.js')
-
 
 client.on('ready', () => {
 	console.log('ready!');
@@ -27,17 +24,7 @@ client.on('guildMemberAdd', member => {
 client.on('message', msg => {
 	if (!msg.content.startsWith(tokens.prefix) || msg.author.bot) return;
 	const ARGS = msg.content.slice(tokens.prefix.length).trim().toLowerCase().split(/ +/g)
-	const COMMAND = ARGS[0]
-	const ACTION = ARGS[1]
-	const ARG = ARGS[2]
-  const msgContent = {COMMAND, ACTION, ARG, msg, client}
-
+  const msgContent = {ARGS, msg, client}
   commands.command(msgContent)
-
-
-	if (COMMAND === 'connect') {
-		commands.connect['connectdb'](msg)
-	}
 });
-// client.login(process.env.SECRET_TOKEN);
 client.login(process.env.SECRET_TOKEN);
