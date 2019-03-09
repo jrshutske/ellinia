@@ -2,7 +2,7 @@ const { Client, RichEmbed } = require('discord.js')
 const client = new Client()
 const tokens = require('./config.json')
 const commands = require('./commands.js')
-const apiKey = require('./utilities/apiKey')
+const apiKey = require('./utilities/apiKey.js')
 let blizzardApiKey = apiKey.getKey()
 
 
