@@ -26,7 +26,7 @@ client.on('guildMemberAdd', member => {
 
 client.on('message', msg => {
 	if (!msg.content.startsWith(tokens.prefix) || msg.author.bot) return;
-	const ARGS = msg.content.slice(tokens.prefix.length).trim().split(/ +/g);
+	const ARGS = msg.content.slice(tokens.prefix.length).trim().toLowerCase().split(/ +/g)
 	const COMMAND = ARGS[0]
 	const ACTION = ARGS[1]
 	const ARG = ARGS[2]
@@ -34,10 +34,6 @@ client.on('message', msg => {
 
   commands.command(msgContent)
 
-
-	if (COMMAND === "roll") {
-		ACTION == undefined ? commands.roll['basicRoll'](msg) : commands.roll['customRoll'](msg);
-	}
 
 	if (COMMAND === 'connect') {
 		commands.connect['connectdb'](msg)
