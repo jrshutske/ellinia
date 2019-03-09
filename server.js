@@ -3,6 +3,7 @@ const client = new Client();
 const tokens = require('./config.json')
 const commands = require('./commands.js')
 const apiKey = require('./utilities/apikey.js')
+const testjs = require('./test.js')
 
 
 client.on('ready', () => {
@@ -29,34 +30,15 @@ client.on('message', msg => {
 	const COMMAND = ARGS[0]
 	const ACTION = ARGS[1]
 	const ARG = ARGS[2]
-	if(COMMAND === "music"){
-		if (commands.music.hasOwnProperty(ACTION)) {
-			commands.music[ACTION](msg)
-		};
-	}
-	if (COMMAND === 'slots') {
-		commands.slots['basicSlots'](msg)
-	}
+  const msgContent = {COMMAND, ACTION, ARG, msg, client}
+
+  commands.command(msgContent)
+
+
 	if (COMMAND === "roll") {
 		ACTION == undefined ? commands.roll['basicRoll'](msg) : commands.roll['customRoll'](msg);
 	}
-	if(COMMAND === "say") {
-		let text = ARGS.slice(1).join("");
-    msg.channel.send(text);
-	}
-  if(COMMAND === "test") {
-    let me = client.user.avatarURL
-    msg.channel.send(me.avatarURL);
-	}
-  if(COMMAND === "char") {
-    commands.char.lookup(ACTION, ARG, msg, client.user);
-	}
-	if (COMMAND === 'hi') {
-		msg.channel.send({embed: {
-		color: 3447003,
-		description: "Hello!"
-		}});
-	}
+
 	if (COMMAND === 'connect') {
 		commands.connect['connectdb'](msg)
 	}
