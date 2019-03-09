@@ -46,8 +46,6 @@ client.on('message', msg => {
     msg.channel.send(text);
 	}
   if(COMMAND === "test") {
-    const oauth = new OAuth2Application()
-msg.channel.send(oauth.redirectURIs)
 
 
 	}
