@@ -22,6 +22,7 @@
     "discord.js": "^11.4.2",
     "kitsu.js": "^2.0.0",
     "node-opus": "^0.3.1",
+    "passport-bnet": "^2.0.0",
     "pg": "^7.8.0",
     "ytdl-core": "^0.24.0"
   }
