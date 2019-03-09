@@ -1,10 +1,8 @@
 const { Client, RichEmbed } = require('discord.js')
-const client = new Client()
+const client = new Client();
 const tokens = require('./config.json')
 const commands = require('./commands.js')
 const apiKey = require('./utilities/apikey.js')
-var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-// let blizzardApiKey = apiKey.getKey()
 
 
 client.on('ready', () => {
@@ -46,8 +44,12 @@ client.on('message', msg => {
 		let text = ARGS.slice(1).join("");
     msg.channel.send(text);
 	}
+  if(COMMAND === "test") {
+    let me = client.user.avatarURL
+    msg.channel.send(me.avatarURL);
+	}
   if(COMMAND === "char") {
-    commands.char["lookup"](ACTION, ARG, msg)
+    commands.char.lookup(ACTION, ARG, msg, client.user);
 	}
 	if (COMMAND === 'hi') {
 		msg.channel.send({embed: {
