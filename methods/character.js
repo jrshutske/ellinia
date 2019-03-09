@@ -51,7 +51,7 @@ const getClassName = (classNum) => {
 }
 
 const buildCharEmbed = (jsonr, className) => {
-  let classIcon = className.trim().toLowerCase();
+  let classIcon = className.trim().toLowerCase().replace(/\s/g, '');
   let tnstr = jsonr.thumbnail.replace("avatar", "main");
   const embed = new RichEmbed()
     .setTitle(jsonr.name)
@@ -64,7 +64,7 @@ const buildCharEmbed = (jsonr, className) => {
     .setThumbnail(`https://wow.zamimg.com/images/wow/icons/large/classicon_${classIcon}.jpg`)
     .setImage(`http://render-us.worldofwarcraft.com/character/${tnstr}`)
     .setTimestamp()
-    .setURL(`https://worldofwarcraft.com/en-us/character/us/${jsonr.realm}/${jsonr.name}`)
+    .setURL(`https://worldofwarcraft.com/en-us/character/us/${realm}/${character}`)
     .setFooter("Character Data - Powered By Peasant", client.user.avatarURL)
   return {embed};
 }
