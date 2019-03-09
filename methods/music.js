@@ -2,18 +2,6 @@ const tokens = require('../config.json');
 const yt = require('ytdl-core');
 let queue = {};
 module.exports = {
-	'username': (msg) => {
-		let user = msg.content.split(' ')[2];
-		msg.channel.send(user);
-	},
-	'avatarurl': (msg) => {
-		let user = msg.content.split(' ')[2];
-		msg.reply(msg.author.avatarURL);
-	},
-	'snow': (msg) => {
-		let user = msg.content.split(' ')[2];
-		msg.reply(msg.author.id);
-	},
 	'play': (msg) => {
 		if (queue[msg.guild.id] === undefined) return msg.channel.send(`Add some songs to the queue first with ${tokens.prefix}add`);
 		if (!msg.guild.voiceConnection) return module.exports.join(msg).then(() => module.exports.play(msg));
@@ -106,11 +94,11 @@ module.exports = {
   		maxResults: 10,
   		key: 'AIzaSyDlI9NQ15aJ_xIafFNyGV0qelglDVBAQrY'
 		};
-		
+
 		search(url1, opts, function(err, results) {
 			if(err) return msg.channel.send(err);
 			msg.channel.send(results);
 		});
 	}
-	
+
 }

@@ -1,10 +1,24 @@
-const { Client } = require('discord.js');
+const { Client, RichEmbed } = require('discord.js');
 const client = new Client();
 const tokens = require('./config.json');
 const commands = require('./commands.js')
 
 client.on('ready', () => {
 	console.log('ready!');
+});
+
+client.on('guildMemberAdd', member => {
+  const embed = new RichEmbed()
+    .setTitle("ellinia")
+    .setColor(0x00AE88)
+    .setDescription("Hello there, " + member.user.username + "! Welcome to " + member.guild.name +
+                    "! We hope you enjoy your time here. Please remember to be respectful and follow the rules.")
+    .setImage("https://i.ytimg.com/vi/XYtHWyrVm30/maxresdefault.jpg")
+    .setThumbnail(member.guild.iconURL)
+    .setTimestamp()
+    .setURL("https://discord.gg/KTgGUeV")
+    .setFooter("All boys leave home someday. It says so on TV.")
+    member.send({embed});
 });
 
 client.on('message', msg => {
@@ -25,9 +39,21 @@ client.on('message', msg => {
 		ACTION == undefined ? commands.roll['basicRoll'](msg) : commands.roll['customRoll'](msg);
 	}
 	if(COMMAND === "say") {
-		let text = ARGS.slice(0).join(" ");
-		msg.delete();
-		msg.channel.send(text);
+		let text = ARGS.slice(1).join("");
+    msg.channel.send(text);
+	}
+  if(COMMAND === "test") {
+    const embed = new RichEmbed()
+      .setTitle("Hi I'm ellinia!")
+      .setColor(0x00AE88)
+      .setDescription("Welcome to " + msg.guild.name +
+                      "! We hope you enjoy your time here. Please remember to be respectful and follow the rules.")
+      .setImage("https://i.ytimg.com/vi/XYtHWyrVm30/maxresdefault.jpg")
+      .setThumbnail(msg.guild.iconURL)
+      .setTimestamp()
+      .setURL("https://discord.gg/KTgGUeV")
+      .setFooter("All boys leave home someday. It says so on TV.")
+      msg.channel.send({embed});
 	}
 	if (COMMAND === 'hi') {
 		msg.channel.send({embed: {
