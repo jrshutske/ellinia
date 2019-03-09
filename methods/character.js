@@ -8,8 +8,8 @@ let character;
 const main = (msgContent) => {
   msg = msgContent.msg;
   client = msgContent.client;
-  realm = msgContent.ACTION;
-  character = msgContent.ARG;
+  realm = msgContent.ARGS[1];
+  character = msgContent.ARGS[2];
   let xhr = new XMLHttpRequest();
   let url = `https://us.api.blizzard.com/wow/character/${realm}/${character}?access_token=USWfF5nmNA8D4zmalj671f8zBNUvSo1CNx`;
   xhr.open("get", url);

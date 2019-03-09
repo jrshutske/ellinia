@@ -64,8 +64,7 @@ const join = (msgContent) => {
 }
 
 const add = (msgContent) => {
-  msg=msgContent.msg
-  let url = msg.content.split(' ')[2];
+  msg = msgContent.ARGS[1]
   if (url == '' || url === undefined) return msg.channel.send(`You must add a YouTube video url, or id after ${tokens.prefix}add`);
   yt.getInfo(url, (err, info) => {
     if(err) return msg.channel.send('Invalid YouTube Link: ' + err);
@@ -85,7 +84,7 @@ const q = (msgContent) => {
 const search = (msgContent) => {
   msg=msgContent.msg
   var search = require('youtube-search');
-  let url1 = msg.content.split(' ')[2];
+  let url1 = msgContent.ARGS[1]
   var opts = {
     maxResults: 10,
     key: 'AIzaSyDlI9NQ15aJ_xIafFNyGV0qelglDVBAQrY'

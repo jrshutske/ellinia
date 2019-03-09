@@ -4,13 +4,15 @@ const music = require('./methods/music.js')
 const slots = require('./methods/slots.js')
 const greeting = require('./methods/greeting.js')
 const roll = require('./methods/roll.js')
+const connect = require('./methods/connect.js')
 
 const command = (msgContent) => {
-  switch(msgContent.COMMAND) {
+  switch(msgContent.ARGS[0]) {
     case "char"   : return char.main(msgContent)
     case "say"    : return say.main(msgContent)
     case "slots"  : return slots.main(msgContent)
     case "roll"   : return roll.main(msgContent)
+    case "p"      :
     case "play"   : return music.play(msgContent)
     case "join"   : return music.join(msgContent)
     case "add"    : return music.add(msgContent)
@@ -21,6 +23,7 @@ const command = (msgContent) => {
     case "sup"    :
     case "hey"    :
     case "hello"  : return greeting.greet(msgContent)
+    case "connect": return connect.connectdb(msgContent)
     default:return null
   }
 }

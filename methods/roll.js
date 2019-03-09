@@ -1,5 +1,5 @@
 const main = (msgContent) => {
-  msgContent.ACTION == undefined ?
+  msgContent.ARGS[1] == undefined ?
   basic(msgContent) :
   custom(msgContent);
 }
@@ -7,7 +7,7 @@ const main = (msgContent) => {
 const custom = (msgContent) => {
   let msg = msgContent.msg;
   let roll;
-	let rollmax = msgContent.ACTION;
+	let rollmax = msgContent.ARGS[1];
 			if (!rollmax || rollmax < 1) {
 					msg.reply("Please specify a number of sides!");
 					return;
