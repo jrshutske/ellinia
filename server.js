@@ -3,7 +3,8 @@ const client = new Client()
 const tokens = require('./config.json')
 const commands = require('./commands.js')
 const apiKey = require('./utilities/apikey.js')
-let blizzardApiKey = apiKey.getKey()
+var XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+// let blizzardApiKey = apiKey.getKey()
 
 
 client.on('ready', () => {
@@ -45,9 +46,8 @@ client.on('message', msg => {
 		let text = ARGS.slice(1).join("");
     msg.channel.send(text);
 	}
-  if(COMMAND === "test") {
-
-
+  if(COMMAND === "char") {
+    commands.char["lookup"](ACTION, ARG, msg)
 	}
 	if (COMMAND === 'hi') {
 		msg.channel.send({embed: {
