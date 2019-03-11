@@ -1,16 +1,5 @@
 const { Client, RichEmbed } = require('discord.js')
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
-let msg;
-let client;
-let token;
-let realm;
-let character;
-let realmName;
-let name;
-let level;
-let achievementPoints;
-let totalHonorableKills;
-let thumbnail;
 
 const main = (msgContent) => {
   msg = msgContent.msg;
@@ -78,7 +67,6 @@ const getClassName = (classNum) => {
   }
   xhr.send(null);
 }
-
 
 const buildCharEmbed = (className) => {
   let classIcon = className.trim().toLowerCase().replace(/\s/g, '');
