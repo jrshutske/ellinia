@@ -34,7 +34,7 @@ const getCharacter = () => {
         msg.channel.send("Realm not found!");
       }
       if (jsonr.reason == null) {
-        realmName = jsonr.realmName
+        realmName = jsonr.realm
         name = jsonr.name
         level = jsonr.level
         achievementPoints = jsonr.achievementPoints
