@@ -21,10 +21,10 @@ const getCharacter = (token) => {
     if(xhr2.readyState == 4) {
       let jsonr = JSON.parse(xhr2.responseText);
       if (jsonr.reason == "Character not found.") {
-        msg.channel.send("Character not found.");
+        msg.channel.send("Character not found!");
       }
       if (jsonr.reason == "Realm not found.") {
-        msg.channel.send("Realm not found.");
+        msg.channel.send("Realm not found!");
       }
       if (jsonr.reason == null) {
         className = getClassName(jsonr.class);
