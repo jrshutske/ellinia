@@ -10,12 +10,16 @@ const main = (msgContent) => {
   client = msgContent.client;
   realm = msgContent.ARGS[1];
   character = msgContent.ARGS[2];
-  let xhr = new XMLHttpRequest();
-  let url = `https://us.api.blizzard.com/wow/character/${realm}/${character}?access_token=USWfF5nmNA8D4zmalj671f8zBNUvSo1CNx`;
-  xhr.open("get", url);
-  xhr.onreadystatechange = () => {
-    if(xhr.readyState == 4) {
-      jsonr = JSON.parse(xhr.responseText);
+  getToken();
+}
+
+const getCharacter = (token) => {
+  let xhr2 = new XMLHttpRequest();
+  let url = `https://us.api.blizzard.com/wow/character/${realm}/${character}?access_token=${token}`;
+  xhr2.open("get", url);
+  xhr2.onreadystatechange = () => {
+    if(xhr2.readyState == 4) {
+      let jsonr = JSON.parse(xhr2.responseText);
       if (jsonr.reason == "Character not found.") {
         msg.channel.send("Character not found.");
       }
@@ -29,8 +33,23 @@ const main = (msgContent) => {
       }
     }
   }
+  xhr2.send(null);
+}
+
+const getToken = () => {
+  let xhr = new XMLHttpRequest();
+  let tokenurl = `https://us.battle.net/oauth/token?client_id=f0315fe57d76491695b77140f61ffda3&client_secret=MFVeGxsAhQyTIxWt0SJMhxaE7c87ioSv&grant_type=client_credentials`;
+  xhr.open("get", tokenurl);
+  xhr.onreadystatechange = () => {
+    if(xhr.readyState == 4) {
+      let jsonr = JSON.parse(xhr.responseText);
+      token = jsonr.access_token
+      getCharacter(token)
+    }
+  }
   xhr.send(null);
 }
+
 
 const getClassName = (classNum) => {
   switch(classNum) {
