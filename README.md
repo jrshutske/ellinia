@@ -1,7 +1,6 @@
 # ellinia bot
 Discord music bot.
 # Requirements:
--
 ```json
 {
   "prefix": "/",
