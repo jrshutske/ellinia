@@ -2,8 +2,15 @@ const { Client, RichEmbed } = require('discord.js')
 const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
 let msg;
 let client;
+let token;
 let realm;
 let character;
+let realmName;
+let name;
+let level;
+let achievementPoints;
+let totalHonorableKills;
+let thumbnail;
 
 const main = (msgContent) => {
   msg = msgContent.msg;
@@ -13,7 +20,7 @@ const main = (msgContent) => {
   getToken();
 }
 
-const getCharacter = (token) => {
+const getCharacter = () => {
   let xhr2 = new XMLHttpRequest();
   let url = `https://us.api.blizzard.com/wow/character/${realm}/${character}?access_token=${token}`;
   xhr2.open("get", url);
@@ -27,9 +34,14 @@ const getCharacter = (token) => {
         msg.channel.send("Realm not found!");
       }
       if (jsonr.reason == null) {
+        realmName = jsonr.realmName
+        name = jsonr.name
+        level = jsonr.level
+        achievementPoints = jsonr.achievementPoints
+        totalHonorableKills = jsonr.totalHonorableKills
+        thumbnail = jsonr.thumbnail;
         className = getClassName(jsonr.class);
-        playerEmbed = buildCharEmbed(jsonr,className);
-        msg.channel.send(playerEmbed);
+
       }
     }
   }
@@ -38,8 +50,8 @@ const getCharacter = (token) => {
 
 const getToken = () => {
   let xhr = new XMLHttpRequest();
-  let tokenurl = `https://us.battle.net/oauth/token?client_id=f0315fe57d76491695b77140f61ffda3&client_secret=MFVeGxsAhQyTIxWt0SJMhxaE7c87ioSv&grant_type=client_credentials`;
-  xhr.open("get", tokenurl);
+  let url = `https://us.battle.net/oauth/token?client_id=f0315fe57d76491695b77140f61ffda3&client_secret=MFVeGxsAhQyTIxWt0SJMhxaE7c87ioSv&grant_type=client_credentials`;
+  xhr.open("get", url);
   xhr.onreadystatechange = () => {
     if(xhr.readyState == 4) {
       let jsonr = JSON.parse(xhr.responseText);
@@ -50,36 +62,35 @@ const getToken = () => {
   xhr.send(null);
 }
 
-
 const getClassName = (classNum) => {
-  switch(classNum) {
-    case 1:return "Warrior";
-    case 2:return "Paladin";
-    case 3:return "Hunter";
-    case 4:return "Rogue";
-    case 5:return "Priest";
-    case 6:return "Death Knight";
-    case 7:return "Shaman";
-    case 8:return "Mage";
-    case 9:return "Warlock";
-    case 10:return "Monk";
-    case 11:return "Druid";
-    case 12:return "Demon Hunter";
-    default:return null;
+  let xhr = new XMLHttpRequest();
+  let url = `https://us.api.blizzard.com/wow/data/character/classes?locale=en_US&access_token=${token}`;
+  xhr.open("get", url);
+  xhr.onreadystatechange = () => {
+    if(xhr.readyState == 4) {
+      let jsonr = JSON.parse(xhr.responseText);
+      jsonr.classes.forEach(function(element) {
+        if (classNum == element.id) {
+          msg.channel.send(buildCharEmbed(element.name));
+        }
+      });
+    }
   }
+  xhr.send(null);
 }
 
-const buildCharEmbed = (jsonr, className) => {
+
+const buildCharEmbed = (className) => {
   let classIcon = className.trim().toLowerCase().replace(/\s/g, '');
-  let tnstr = jsonr.thumbnail.replace("avatar", "main");
+  let tnstr = thumbnail.replace("avatar", "main");
   const embed = new RichEmbed()
-    .setTitle(jsonr.name)
+    .setTitle(name)
     .setColor(000000)
-    .setDescription(jsonr.realm, true)
-    .addField("Level:", jsonr.level, true)
+    .setDescription(realmName, true)
+    .addField("Level:", level, true)
     .addField("Class:", className, true)
-    .addField("Achievement Points:", jsonr.achievementPoints, true)
-    .addField("Honorable Kills:", jsonr.totalHonorableKills, true)
+    .addField("Achievement Points:", achievementPoints, true)
+    .addField("Honorable Kills:", totalHonorableKills, true)
     .setThumbnail(`https://wow.zamimg.com/images/wow/icons/large/classicon_${classIcon}.jpg`)
     .setImage(`http://render-us.worldofwarcraft.com/character/${tnstr}`)
     .setTimestamp()
