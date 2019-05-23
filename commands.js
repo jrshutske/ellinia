@@ -5,8 +5,19 @@ const slots = require('./methods/slots.js')
 const greeting = require('./methods/greeting.js')
 const roll = require('./methods/roll.js')
 const connect = require('./methods/connect.js')
+const userModel = require('./model/UsersModel.js')
 
 const command = (msgContent) => {
+  const user_id = msgContent.msg.author.id
+  // create user if doesn't exist, if they do give them +5 credits
+  giveCredits = (user) => {
+    console.table('Here is the users cred: ' + user.credits);
+    user == null 
+    ? userModel.createUser(user_id) 
+    : userModel.updateUser(user_id, parseInt(user.credits)+5)
+  }
+  userModel.findUser(user_id, giveCredits);
+  
   switch(msgContent.ARGS[0]) {
     case "char"   : return char.main(msgContent)
     case "say"    : return say.main(msgContent)
