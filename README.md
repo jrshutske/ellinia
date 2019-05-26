@@ -1,5 +1,5 @@
 # ellinia bot
-Discord music bot.
+Discord bot that consumes the blizzard api and soon to be maplelegends api and maple io swagger api.
 # Requirements:
 ```json
 {
