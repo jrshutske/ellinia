@@ -24,15 +24,15 @@ const testConnection = () => {
 const createTable = () => {
   Users.sync({ force: true }).then(() => {
     return Users.create({
-      user_id: 10000,
-      credits: 10000
+      user_id: 0,
+      credits: 0
     });
   });
 }
 
-const findUser = (user_id,callback) => {
+const findUser = (user_id, callback) => {
   Users.findOne({ where: { user_id: user_id } }).then(user => {
-    console.log("Found the user:", user.user_id);
+    user && console.log("Found the user:", user.user_id);
     callback(user);
   });
 }

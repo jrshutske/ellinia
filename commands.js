@@ -11,10 +11,14 @@ const command = (msgContent) => {
   const user_id = msgContent.msg.author.id
   // create user if doesn't exist, if they do give them +5 credits
   giveCredits = (user) => {
-    console.table('Here is the users cred: ' + user.credits);
-    user == null 
-    ? userModel.createUser(user_id) 
-    : userModel.updateUser(user_id, parseInt(user.credits)+5)
+    if (user == null ) {
+      console.log("creating user")
+      userModel.createUser(user_id)
+    }
+    else {
+      userModel.updateUser(user_id, user.credits ? parseInt(user.credits) + 5 : 0);
+      console.log("users credits: " + user.credits)
+    }
   }
   userModel.findUser(user_id, giveCredits);
   
@@ -38,4 +42,5 @@ const command = (msgContent) => {
     default:return null
   }
 }
+
 module.exports.command = command
