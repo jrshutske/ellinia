@@ -27,7 +27,7 @@
     "passport-bnet": "^2.0.0",
     "pg": "^7.11.0",
     "pg-hstore": "^2.3.2",
-    "sequelize": "^5.8.6",
+    "sequelize": "^5.15.1",
     "xmlhttprequest": "^1.8.0",
     "ytdl-core": "^0.24.0"
   }
