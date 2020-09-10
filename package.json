@@ -22,7 +22,7 @@
     "discord.js": "^11.4.2",
     "json-http-request": "^1.0.1",
     "kitsu.js": "^2.0.0",
-    "node-fetch": "^2.6.0",
+    "node-fetch": "^2.6.1",
     "node-opus": "^0.3.1",
     "passport-bnet": "^2.0.0",
     "pg": "^7.11.0",
